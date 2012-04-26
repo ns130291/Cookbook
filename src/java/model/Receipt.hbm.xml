@@ -1,0 +1,45 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 26.04.2012 16:15:26 by Hibernate Tools 3.2.1.GA -->
+<hibernate-mapping>
+    <class name="model.Receipt" table="receipt" catalog="cookbook">
+        <id name="id" type="java.lang.Integer">
+            <column name="ID" />
+            <generator class="identity" />
+        </id>
+        <property name="description" type="string">
+            <column name="DESCRIPTION" length="65535" not-null="true" />
+        </property>
+        <property name="picture" type="string">
+            <column name="PICTURE" length="256" />
+        </property>
+        <property name="degree" type="java.lang.Integer">
+            <column name="DEGREE" />
+        </property>
+        <property name="duration" type="java.lang.Integer">
+            <column name="DURATION" />
+        </property>
+        <property name="title" type="string">
+            <column name="TITLE" length="256" not-null="true" />
+        </property>
+        <property name="author" type="string">
+            <column name="AUTHOR" length="256" />
+        </property>
+        <property name="note" type="string">
+            <column name="NOTE" length="256" />
+        </property>
+        <set name="ingredientTbls" inverse="true">
+            <key>
+                <column name="RECEIPT_ID" not-null="true" />
+            </key>
+            <one-to-many class="model.IngredientTbl" />
+        </set>
+        <set name="equipments" inverse="true">
+            <key>
+                <column name="RECEIPT_ID" not-null="true" />
+            </key>
+            <one-to-many class="model.Equipment" />
+        </set>
+    </class>
+</hibernate-mapping>
