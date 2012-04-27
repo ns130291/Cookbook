@@ -15,7 +15,6 @@
     <!-- Enable Hibernate's automatic session context management -->
     <property name="current_session_context_class">thread</property>
     <property name="hibernate.show_sql">true</property>
-    <property name="hibernate.query.factory_class">org.hibernate.hql.classic.ClassicQueryTranslatorFactory</property>
     <mapping resource="model/IngredientTbl.hbm.xml"/>
     <mapping resource="model/Receipt.hbm.xml"/>
     <mapping resource="model/Equipment.hbm.xml"/>
