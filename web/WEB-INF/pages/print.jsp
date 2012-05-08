@@ -1,6 +1,6 @@
 <%-- 
-    Document   : index
-    Created on : 26.04.2012, 14:06:43
+    Document   : print
+    Created on : 08.05.2012, 21:09:22
     Author     : ns130291
 --%>
 
@@ -12,6 +12,6 @@
         <title>JSP Page</title>
     </head>
     <body>
-        <h1>Hello World!</h1>
+        <h1>Print</h1>
     </body>
 </html>

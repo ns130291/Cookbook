@@ -122,6 +122,6 @@ public class Receipt implements java.io.Serializable {
 
     @Override
     public String toString() {
-        return "[Rezept: " + title + " Zutaten: " + ingredientTbls.toString() + " Zubehör: " + equipments.toString() + "]";
+        return "\n[Rezept: " + title + " Zutaten: " + ingredientTbls.toString() + " Zubehör: " + equipments.toString() + "]";
     }
 }
