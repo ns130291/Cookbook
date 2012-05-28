@@ -29,13 +29,13 @@
         <property name="note" type="string">
             <column name="NOTE" length="256" />
         </property>
-        <set name="ingredientTbls" inverse="true">
+        <set name="ingredientTbls" inverse="true" lazy="true">
             <key>
-                <column name="RECEIPT_ID" not-null="true" />
+                <column name="RECEIPT_ID" not-null="true"/>
             </key>
             <one-to-many class="model.IngredientTbl" />
         </set>
-        <set name="equipments" inverse="true">
+        <set name="equipments" inverse="true" lazy="true">
             <key>
                 <column name="RECEIPT_ID" not-null="true" />
             </key>
