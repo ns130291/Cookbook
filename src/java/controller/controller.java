@@ -8,6 +8,7 @@ import helper.CookbookHelper;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -69,9 +70,9 @@ public class controller extends HttpServlet {
         } else if (request.getParameter("article") != null) {
             //Artikel laden
             session.setAttribute("rezept", helper.selectReceipt(session, Integer.parseInt(request.getParameter("article"))));
-            forward(request, response, "/WEB-INF/pages/article.jsp");
-        } else if (false) {
-            //noch übrig
+            forward(request, response, "/WEB-INF/pages/recipe.jsp");
+        } else if (request.getParameter("newrecipe") != null) {
+            forward(request, response, "/WEB-INF/pages/addrecipe.jsp");
         } else {
             //falscher Parameter übergeben, Rezept-Übersicht wird angezeigt
             forward(request, response, "/WEB-INF/pages/overview.jsp");
@@ -128,10 +129,22 @@ public class controller extends HttpServlet {
             try {
                 int id = Integer.parseInt(request.getParameter("toCookbook"));
                 ArrayList<Receipt> kochbuch = (ArrayList<Receipt>) session.getAttribute("kochbuch");
-                Receipt temp = helper.selectReceipt(session, id);
-                kochbuch.add(temp);
-                session.setAttribute("cookbookitem", temp);
-                forward(request, response, "/WEB-INF/pages/cookbookitem.jsp");
+                Iterator<Receipt> iter = kochbuch.listIterator();
+                boolean present = false;
+                while (iter.hasNext()) {
+                    if (iter.next().getId() == id) {
+                        present = true;
+                    }
+                }
+                if (present) {
+                    response.setStatus(500);
+                    out.println("Rezept schon vorhanden");
+                } else {
+                    Receipt temp = helper.selectReceipt(session, id);
+                    kochbuch.add(temp);
+                    session.setAttribute("cookbookitem", temp);
+                    forward(request, response, "/WEB-INF/pages/cookbookitem.jsp");
+                }
             } catch (Exception ex) {
                 response.setStatus(500);
                 out.println("Rezept konnte nicht hinzugefügt werden");

@@ -1,5 +1,5 @@
 <%-- 
-    Document   : article
+    Document   : recipe
     Created on : 09.05.2012, 10:00:59
     Author     : ns130291
 --%>
@@ -11,6 +11,6 @@
   ${rezept.title}
 </div>
 <div id="pcontrols">
-    <div class="button right" onclick="closePopup()">Schließen</div><div class="button right">Hinzufügen</div>
+    <div class="button right" onclick="closePopup()">Schließen</div><div class="button right" onclick="addToList(${rezept.id});closePopup();">Hinzufügen</div>
     <div class="clear"></div>
 </div>

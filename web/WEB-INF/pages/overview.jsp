@@ -19,16 +19,15 @@
     </head>
     <body>
         <div>
-            <div class="button right" onclick="newReceipt()">Neues Rezept</div>
+            <div class="button right" onclick="newRecipe()">Neues Rezept</div>
             <h1>Rezepte</h1>
         </div>
         <div class="clear"></div>
         <div>
             <div class="right">
-                <a class="button right" href="#">Drucken</a>
+                <a class="button right" href="controller?print=true">Drucken</a>
                 <h2>Kochbuch</h2>
-                <div id="selectedreceipts">
-                    <c:forEach items="${kochbuch}" var="rezept">
+                <div id="selectedreceipts"><c:forEach items="${kochbuch}" var="rezept">
                         <div class="cookbookitem">
                             <div>
                                 <div class="cpicture left" style="background-image: url('img/abc.png');"></div>
@@ -37,8 +36,7 @@
                             </div>
                             <div class="clear"></div>
                         </div>
-                    </c:forEach>
-                </div>
+                    </c:forEach></div>
                 <div class="clear"></div>
             </div>
             <c:forEach items="${rezepte}" var="rezept">

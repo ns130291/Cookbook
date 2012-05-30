@@ -82,3 +82,27 @@
     border-bottom: none;
 }
 
+#selectedreceipts:empty:after{
+    content: "noch keine Rezepte im Kochbuch";
+}
+
+#kochbuch{
+    width: 17cm;
+    border: 1px solid black;
+    padding: 2cm;
+    margin: 0 auto;
+    box-shadow:  0px 0px 10px 3px rgba(0, 0, 0, 0.7);
+}
+
+.td{
+    display: table-cell;
+}
+
+.td:first-child{
+    padding-right: 20px;
+}
+
+.tr{
+    display: table-row;
+
+}

@@ -4,7 +4,6 @@
  */
 
 function showPopup(id){
-    //alert(id);
     var req = new XMLHttpRequest();
     var url = "/Cookbook/controller";
     var params = "article="+id;
@@ -45,6 +44,22 @@ function addToList(id){
     req.send(params);
 }
 
-function newReceipt(){
+function newRecipe(){
+    var req = new XMLHttpRequest();
+    var url = "/Cookbook/controller";
+    var params = "newrecipe=";
+    req.open("get", url+"?"+params, true);
+    req.onreadystatechange = function(){
+        if(req.readyState==4&&req.status==200){
+            var popup = document.createElement("div");
+            popup.innerHTML = req.responseText;
+            popup.id = "popup";
+            document.body.insertBefore(popup, document.body.childNodes[0]);
+        }
+    }
+    req.send();
+}
+
+function newRecipeSave(){
     
 }
