@@ -61,5 +61,75 @@ function newRecipe(){
 }
 
 function newRecipeSave(){
-    
+    //hiddenfields for equipment and ingredients
+    //equipment
+    var array = document.getElementById("equipment").childNodes;
+    var equipment="";
+    for(var i = 0; i<array.length;i++){
+        equipment+=array[i].childNodes[0].value;
+        equipment+=';';
+    }
+    var hidden = document.createElement("input");
+    hidden.type = 'hidden';
+    hidden.value = equipment;
+    hidden.name = 'equipment';
+    document.getElementById("equipment").appendChild(hidden);
+    //ingredients
+    array = document.getElementById("ingredient").childNodes;
+    var ingredient="";
+    for(var i = 0; i<array.length;i++){
+        ingredient+=array[i].childNodes[0].value;
+        ingredient+=':';
+        ingredient+=array[i].childNodes[1].value;
+        ingredient+=':';
+        ingredient+=array[i].childNodes[2].value;
+        ingredient+=';';
+    }
+    hidden = document.createElement("input");
+    hidden.type = 'hidden';
+    hidden.value = ingredient;
+    hidden.name = 'ingredient';
+    document.getElementById("ingredient").appendChild(hidden);
+//submit form
+    document.getElementById("addrecipe").submit();
+}
+
+function addEquipment(){
+    var child = document.createElement("div");
+    child.innerHTML = '<input type="text"/>';
+    document.getElementById("equipment").appendChild(child);
+}
+
+function addIngredient(){
+    var child = document.createElement("div");
+    child.innerHTML = '<input type="text"/><input type="text"/><input type="text"/>';
+    document.getElementById("ingredient").appendChild(child);
+}
+
+function removeFromList(id){
+    var req = new XMLHttpRequest();
+    var url = "/Cookbook/controller";
+    var params = "removeFromCookbook="+id;
+    req.open("post", url, true);
+    req.setRequestHeader("Content-type", "application/x-www-form-urlencoded");  
+    req.onreadystatechange = function(){
+        if(req.readyState==4){
+            window.location.reload()
+        }
+    }
+    req.send(params);
+}
+
+function removeAllFromList(){
+    var req = new XMLHttpRequest();
+    var url = "/Cookbook/controller";
+    var params = "removeAllFromCookbook=";
+    req.open("post", url, true);
+    req.setRequestHeader("Content-type", "application/x-www-form-urlencoded");  
+    req.onreadystatechange = function(){
+        if(req.readyState==4){
+            window.location.reload()
+        }
+    }
+    req.send(params);
 }

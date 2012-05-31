@@ -119,6 +119,14 @@ public class Receipt implements java.io.Serializable {
     public void setEquipments(Set<Equipment> equipments) {
         this.equipments = equipments;
     }
+    
+    public void addIngredient(IngredientTbl ingredient){
+        this.ingredientTbls.add(ingredient);
+    }
+    
+    public void addEquipment (Equipment equipment){
+        this.equipments.add(equipment);
+    }
 
     @Override
     public String toString() {

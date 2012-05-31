@@ -25,14 +25,22 @@
         <div class="clear"></div>
         <div>
             <div class="right">
+                <div class="right button" onclick="removeAllFromList()">Leeren</div>
                 <a class="button right" href="controller?print=true">Drucken</a>
                 <h2>Kochbuch</h2>
                 <div id="selectedreceipts"><c:forEach items="${kochbuch}" var="rezept">
                         <div class="cookbookitem">
                             <div>
-                                <div class="cpicture left" style="background-image: url('img/abc.png');"></div>
-                                <%--<div style="background-image: url(img/${rezept.picture});"></div>--%>
+                                <c:choose>
+                                    <c:when test="${empty rezept.picture}">
+                                        <div class="cpicture left"></div>
+                                    </c:when>
+                                    <c:otherwise>
+                                        <div class="cpicture left" style="background-image: url('img/${rezept.picture}');"></div>
+                                    </c:otherwise>
+                                </c:choose>
                                 ${rezept.title}
+                                <div class="right button" onclick="removeFromList(${rezept.id})">x</div>
                             </div>
                             <div class="clear"></div>
                         </div>
