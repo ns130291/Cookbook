@@ -106,3 +106,10 @@
     display: table-row;
 
 }
+.img{
+    width: 17cm;
+    height: 12cm;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: contain;
+}

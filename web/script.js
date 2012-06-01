@@ -90,7 +90,7 @@ function newRecipeSave(){
     hidden.value = ingredient;
     hidden.name = 'ingredient';
     document.getElementById("ingredient").appendChild(hidden);
-//submit form
+    //submit form
     document.getElementById("addrecipe").submit();
 }
 
