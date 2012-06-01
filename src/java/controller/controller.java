@@ -132,11 +132,7 @@ public class controller extends HttpServlet {
             session.setAttribute("rezepte", helper.getAllReceipts());
         }
 
-        if (request.getParameter("add") != null) {
-            //neues Rezept hinzufügen
-            Receipt newr = new Receipt(request.getParameter("desc"), request.getParameter("title"));
-            helper.addReceipt(newr);
-        } else if (request.getParameter("toCookbook") != null) {
+        if (request.getParameter("toCookbook") != null) {
             //Rezept zu Kochbuch hinzufügen
             System.out.println("kochbuch hinzufügen anfang");
             PrintWriter out = response.getWriter();
@@ -210,7 +206,7 @@ public class controller extends HttpServlet {
                 String[] extension = saveFileName.split("\\.");
                 //zufallsname generieren
                 int r = (int) (Math.random() * (99999 - 10000) + 10000);
-                saveFileName = r + "." + extension[1];
+                saveFileName = r + "." + extension[extension.length - 1];
 
                 index = file.indexOf("boundary");
                 index = contentType.indexOf("=", index + 1);
@@ -269,9 +265,11 @@ public class controller extends HttpServlet {
                 System.out.println(request.getParameter("equipment"));
                 String[] stemp = request.getParameter("equipment").split(";");
                 for (int i = 0; i < stemp.length; i++) {
-                    Equipment etemp = new Equipment(r, stemp[i]);
-                    r.addEquipment(etemp);
-                    helper.addEquipment(etemp);
+                    if (!stemp[i].equals("")) {
+                        Equipment etemp = new Equipment(r, stemp[i]);
+                        r.addEquipment(etemp);
+                        helper.addEquipment(etemp);
+                    }
                 }
             }
 
@@ -296,11 +294,6 @@ public class controller extends HttpServlet {
 
             forward(request, response, "/WEB-INF/pages/overview.jsp");
         } else {
-            /*
-             * RequestDispatcher dispatcher =
-             * request.getRequestDispatcher("errorurl");
-             * dispatcher.forward(request, response);
-             */
             PrintWriter out = response.getWriter();
             response.setContentType("text/html;charset=UTF-8");
             response.setStatus(500);

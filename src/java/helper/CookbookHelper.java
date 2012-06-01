@@ -24,6 +24,9 @@ public class CookbookHelper {
 
     Session session = null;
 
+    /**
+     * Erstellt die Hibernate-Session
+     */
     public CookbookHelper() {
         this.session = HibernateUtil.getSessionFactory().getCurrentSession();
     }
@@ -46,6 +49,10 @@ public class CookbookHelper {
         session = HibernateUtil.getSessionFactory().getCurrentSession();
     }
     
+    /**
+     * Fügt eine Zutat zur Datenbank hinzu
+     * @param newI 
+     */
     public void addIngredient(IngredientTbl newI) {
         session.close();
         try {
@@ -60,6 +67,10 @@ public class CookbookHelper {
         session = HibernateUtil.getSessionFactory().getCurrentSession();
     }
     
+    /**
+     * Fügt ein Zubehörteil zur Datenbank hinzu
+     * @param newE 
+     */
     public void addEquipment(Equipment newE) {
         session.close();
         try {
@@ -74,6 +85,10 @@ public class CookbookHelper {
         session = HibernateUtil.getSessionFactory().getCurrentSession();
     }
 
+    /**
+     * Fragt alle Rezepte aus der Datenbank ab
+     * @return 
+     */
     public List<Receipt> getAllReceipts() {
         List<Receipt> receipts = (List<Receipt>) queryDB("from Receipt as r");
         System.out.println(receipts.toString());

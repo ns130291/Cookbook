@@ -120,10 +120,19 @@ public class Receipt implements java.io.Serializable {
         this.equipments = equipments;
     }
     
+    /**
+     * Fügt einem Rezept eine Zutat hinzu
+     * @param ingredient 
+     */
     public void addIngredient(IngredientTbl ingredient){
         this.ingredientTbls.add(ingredient);
     }
     
+    
+    /**
+     * Fügt einem Rezept ein Zubehörteil hinzu
+     * @param equipment 
+     */
     public void addEquipment (Equipment equipment){
         this.equipments.add(equipment);
     }
